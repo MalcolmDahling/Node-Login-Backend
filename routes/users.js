@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+
 const nanoid = require('nanoid');
 const cors = require('cors');
 
-express().use(cors());
+router.use(cors());
 
 users = [
     {id:nanoid.nanoid(), username:'gunde', password:'123', loggedIn:false},
@@ -20,7 +21,7 @@ router.post('/login', function(req, res){
 
     if(foundUser){
         foundUser.loggedIn = true;
-        res.send('You are now logged in. ' + foundUser.id);
+        res.send(foundUser.id);
     }
 
     else{
